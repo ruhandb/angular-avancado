@@ -4,8 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { map, catchError, flatMap } from "rxjs/operators";
 
-import { Category } from "./categorie.model";
-import { element } from 'protractor';
+import { Category } from "./category.model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +23,7 @@ export class CategoryService {
   }
 
   getById(id: number): Observable<Category>{
-    const url = '${this.apiPath}/${id}';
+    const url = `${this.apiPath}/${id}`;
     return this.http.get(url).pipe(
       catchError(this.handleError),
       map(this.jsonDataToCategory)
@@ -39,7 +38,7 @@ export class CategoryService {
   }
 
   update(category: Category): Observable<Category>{
-    const url = '${this.apiPath}/${category.id}';
+    const url = `${this.apiPath}/${category.id}`;
     return this.http.put(url, category).pipe(
       catchError(this.handleError),
       map(() => category)
@@ -47,7 +46,7 @@ export class CategoryService {
   }
 
   delete(id: Number): Observable<Category>{
-    const url = '${this.apiPath}/${id}';
+    const url = `${this.apiPath}/${id}`;
     return this.http.delete(url).pipe(
       catchError(this.handleError),
       map(() => null)
